@@ -3,19 +3,22 @@ package p140913;
 public class Permutation {
 	/**
 	 * Calculate Permutation
+	 * 
 	 * @param n
 	 * @param k
 	 * @return
 	 */
-	public static int perm(int n, int k){
-		
+	public static int perm(int n, int k) {
+
 		int p = Factorial.facto(n) / Factorial.facto(n - k);
 		return p;
 	}
-	public static void main(String args[]){
+
+	public static void main(String args[]) {
 		// what is 3P2
-		// 3°³ÀÇ Ä«µåÁß¿¡ 2°³¸¦ ¼±ÅÃÇÒ °æ¿ìÀÇ °¹¼ö´Â? (¼ø¼­µµ ±¸º°µÊ. {A,B,C} != {C,B,A})
-		int p = perm(3,2);
+		// 3ê°œì˜ ì¹´ë“œì¤‘ì— 2ê°œë¥¼ ì„ íƒí•  ê²½ìš°ì˜ ê°¯ìˆ˜ëŠ”? (ìˆœì„œë„ êµ¬ë³„ë¨. {A,B,C} != {C,B,A})
+
+		int p = perm(3, 2);
 		System.out.println(p);
 	}
 }

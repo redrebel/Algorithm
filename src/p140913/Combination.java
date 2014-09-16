@@ -9,13 +9,13 @@ public class Combination {
 	 * @return
 	 */
 	public static int comb(int n, int k){
-		// nÀå¿¡¼­ kÀåÀ» ¼±ÅÃÇÏ´Â ¸ğµç ¼ø¿­ÀÇ ¼ö / kÀåÀ» Ä¡È¯ÇÏ´Â ¸ğµç °¡ÁöÀÇ ¼ö.
+		// nì¥ì—ì„œ kì¥ì„ ì„ íƒí•˜ëŠ” ëª¨ë“  ìˆœì—´ì˜ ìˆ˜ / kì¥ì„ ì¹˜í™˜í•˜ëŠ” ëª¨ë“  ê°€ì§€ì˜ ìˆ˜.
 		int c = Permutation.perm(n, k) / Permutation.perm(k, k);
 		return c;
 	}
 	public static void main(String[] args) {
 		// what is 5C3
-		// 3°³ÀÇ Ä«µåÁß¿¡ 2°³¸¦ ¼±ÅÃÇÒ °æ¿ìÀÇ °¹¼ö´Â? (¼ø¼­ ±¸º°¾È. {A,B,C} = {C,B,A})
+		// 3ê°œì˜ ì¹´ë“œì¤‘ì— 2ê°œë¥¼ ì„ íƒí•  ê²½ìš°ì˜ ê°¯ìˆ˜ëŠ”? (ìˆœì„œ êµ¬ë³„ì•ˆ. {A,B,C} = {C,B,A})
 		int c = comb(5,3);
 		System.out.println(c);
 	}
