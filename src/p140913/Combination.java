@@ -1,5 +1,10 @@
 package p140913;
 
+/**
+ * Combination
+ * @author cjred77@gmail.com
+ *
+ */
 public class Combination {
 
 	/**

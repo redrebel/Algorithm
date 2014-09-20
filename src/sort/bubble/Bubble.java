@@ -1,10 +1,10 @@
-package p140910;
+package sort.bubble;
 
 /**
  * bubble sort
  * 
- * @author red
- * 
+ * @author cjred77@gmail.com
+ * 14.09.10
  */
 public class Bubble {
 

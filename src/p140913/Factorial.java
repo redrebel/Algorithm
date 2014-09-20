@@ -1,5 +1,9 @@
 package p140913;
 
+/**
+ * @author cjred77@gmail.com
+ *
+ */
 public class Factorial {
 	/**
 	 * Calculate Factorial

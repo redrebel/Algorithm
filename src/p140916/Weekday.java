@@ -1,5 +1,10 @@
 package p140916;
 
+/**
+ * 
+ * @author cjred77@gmail.com
+ *
+ */
 public class Weekday {
 
 	/**
