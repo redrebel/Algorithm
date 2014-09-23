@@ -4,10 +4,12 @@ package sort.selection;
  * Selection Sort
  * @author cjred77@gmail.com
  * 14.09.20
+ * 
+ * 
  */
 public class Selection {
 
-	public static void selection(int[] arr){
+	public static void sort(int[] arr){
 		int arrLen = arr.length;
 		int actCnt = 0;
 		for(int i = 0; i < arrLen; i++){
@@ -32,7 +34,7 @@ public class Selection {
 		for(int a:arr)
 			System.out.print(a+",");
 		System.out.println();
-		selection(arr);
+		sort(arr);
 		for(int a:arr)
 			System.out.print(a+",");
 	}

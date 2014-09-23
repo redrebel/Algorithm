@@ -1,10 +1,27 @@
 package sort.bubble;
 
 /**
- * bubble sort
+ * Bubble sort
  * 
  * @author cjred77@gmail.com
  * 14.09.10
+ * 
+ * Do 
+ *   swapped = false
+ *   for i = 1 to numOfElements exclusive
+ *     if leftElement > rightElement
+ *       swap(leftElement, rightElement)
+ *       swapped = true
+ * while swapped
+ * 
+ * enhanced
+ * do swapped = false
+ *   for i=1 to indexOfLastUnsortedElement
+ *     if lefrElement > rightElement
+ *       swap(leftElement, rightElement)
+ *       swapped =true
+ * while swapped
+ * 
  */
 public class Bubble {
 
@@ -12,7 +29,7 @@ public class Bubble {
 	 * bubble sort
 	 * @param arr
 	 */
-	public static int bubbleSort(int[] arr) {
+	public static int sort(int[] arr) {
 		int cntSwap = 0;
 		boolean swapped;
 		do {
@@ -36,7 +53,7 @@ public class Bubble {
 	 * @param arr
 	 * @return
 	 */
-	public static int enhancedBubbleSort(int[] arr){
+	public static int enhanceSort(int[] arr){
 		int cntSwap = 0;
 		boolean swapped;
 		int lastIndex = arr.length;
@@ -64,7 +81,7 @@ public class Bubble {
 		System.out.println();
 		int cntSwap;
 		//cntSwap = bubbleSort(arr);
-		cntSwap = enhancedBubbleSort(arr);
+		cntSwap = enhanceSort(arr);
 		for(int a:arr)
 			System.out.print(a+",");
 		System.out.println();
