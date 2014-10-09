@@ -5,28 +5,66 @@ package pearls.chapter1;
  * transfer int to BitVector for java
  */
 public class BitVector {
+    private final int SHIFT = 3;
+    private final byte MASK = 0x07;
     private int size;
     private byte[] bits;
 
+    /**
+     * initialize
+     * @param size : Bit Size
+     * @throws Exception
+     */
     public BitVector(int size) throws Exception {
-        if(size < 8){
-            throw new Exception("too small");
+        if(size < 0){
+            throw new Exception("too small size");
         }
-        this.size = size;
-        bits = new byte[(size>>3)+1];
+        bits = new byte[(size>>SHIFT)+1];
+        this.size = bits.length * 8;//size;
+        System.out.println("Maximum BitVector size : "+this.size);
 
     }
 
+    /**
+     * clearBit
+     * @param n
+     */
     public void clearBit(int n){
-        bits[n>>3] &= ~(1<<(n&7));
+        int offset = n>>SHIFT;
+        byte procMask = (byte)(1<<(n&MASK));
+
+        bits[offset] &= ~procMask;
     }
+
+    /**
+     * setBit
+     * @param n
+     * @return
+     */
     public boolean setBit(int n){
-        bits[n>>3] |= (1<<(n&7));
+        int offset = n>>SHIFT;
+        byte procMask = (byte)(1<<(n&MASK));
+
+        bits[offset] |= procMask;
         return true;
     }
+
+    /**
+     * getBit
+     * @param n
+     * @return
+     */
     public boolean getBit(int n){
-        return (bits[n>>3] & (1<<(n&7))) != 0;
+        int offset = n>>SHIFT;
+        byte procMask = (byte)(1<<(n&MASK));
+
+        return (bits[offset] & (procMask)) != 0;
     }
+
+    /**
+     * toString
+     * @return
+     */
     public String toString(){
         StringBuilder s = new StringBuilder();
         byte b = 0x01;
@@ -49,19 +87,33 @@ public class BitVector {
         }
         return s.reverse().toString();
     }
+
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
-        int n = 8;
-        BitVector bv = new BitVector(n);
-        System.out.println(bv.toString());
-        bv.setBit(2);
-        System.out.println(bv.toString());
-        System.out.println(bv.getBit(2));
+        int size = 870 * 1000000;
+        int n = 300 * 1000000;
+        BitVector bv = new BitVector(size);
 
-        bv.clearBit(2);
-        System.out.println(bv.toString());
+        bv.setBit(n);
+        //System.out.println("BitVector setting (" + n + ") : " + bv.toString());
+        System.out.println("BitVector (" + n + ") is set ? :" + bv.getBit(n));
 
-        System.out.println(n);
-        System.out.println((n>>3)+1);
+        bv.setBit(5);
+        //System.out.println("BitVector setting (" + 5 + ") : " + bv.toString());
+        System.out.println("BitVector (" + 5 + ") is set ? :" + bv.getBit(5));
+
+        System.out.println("BitVector (" + 2 + ") is set ? :" + bv.getBit(2));
+
+        bv.clearBit(n);
+        System.out.println("BitVector clear (" + n + ") : "); // + bv.toString());
+        System.out.println("BitVector (" + n + ") is set ? :" + bv.getBit(n));
+
+        //System.out.println(n);
+        //System.out.println((n>>3)+1);
         return;
     }
 }
