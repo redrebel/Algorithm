@@ -9,8 +9,7 @@ package sort.selection;
  */
 public class Selection {
 
-	public static void sort(int[] arr){
-		int arrLen = arr.length;
+	public static void sort(int[] arr, int arrLen){
 		int actCnt = 0;
 		for(int i = 0; i < arrLen; i++){
 			int mini = arr[i];
@@ -34,7 +33,7 @@ public class Selection {
 		for(int a:arr)
 			System.out.print(a+",");
 		System.out.println();
-		sort(arr);
+		sort(arr, arr.length);
 		for(int a:arr)
 			System.out.print(a+",");
 	}
