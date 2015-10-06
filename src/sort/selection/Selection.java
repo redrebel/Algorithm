@@ -22,38 +22,23 @@ public class Selection {
 	public static void sort(int[] arr, int arrLen){
 		int actCnt = 0;
 		for(int i = 0; i < arrLen; i++){
-			int mini = arr[i];
 			int miniIdx = i;
-			for(int j=i+1;j<arrLen;j++){
-				if(mini > arr[j]){
-					mini = arr[j];
-					miniIdx = j;
-				}
-				actCnt++;
-			}
-			int temp = arr[i];
-			arr[i] = arr[miniIdx];
-			arr[miniIdx] = temp;
-			printArray(arr);
-		}
-		System.out.println(actCnt);
-	}
+			System.out.print("arr[" + miniIdx + "]=" + arr[miniIdx]);
 
-	public static void sort2(int[] arr, int arrLen){
-		int actCnt = 0;
-		for(int i = 0; i < arrLen; i++){
-			int miniIdx = i;
 			for(int j=i+1;j<arrLen;j++){
 				if(arr[miniIdx] > arr[j]){
 					miniIdx = j;
 				}
 				actCnt++;
 			}
+			System.out.print(" <-> arr[" + miniIdx + "]=" + arr[miniIdx] + " -> "  );
+
 			int temp = arr[i];
 			arr[i] = arr[miniIdx];
 			arr[miniIdx] = temp;
+			printArray(arr);
 		}
-		System.out.println(actCnt);
+		System.out.println("Compare count : " + actCnt);
 	}
 
 	
@@ -65,7 +50,7 @@ public class Selection {
 			arr[i] = (int)(Math.random()*100) + 1;
 		}
 		printArray(arr);
-		sort2(arr, arr.length);
+		sort(arr, arr.length);
 		printArray(arr);
 	}
 
