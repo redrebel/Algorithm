@@ -17,9 +17,22 @@ public class Factorial {
 		}
 		return m;
 	}
+
+  /**
+   * Factorial (way of recursion)
+   * @param n
+   * @return
+   */
+	public static int recursion_facto(int n){
+		if(n == 0) return 1;
+		else if(n == 1) return 1;
+		else return n*recursion_facto(n-1);
+
+	}
 	public static void main(String[] args) {
 		// what is 7! (7*6*5*4*3*2*1)
 		System.out.println(facto(7));
+		System.out.println(recursion_facto(7));
 	}
 
 }
