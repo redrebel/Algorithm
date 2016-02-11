@@ -1,4 +1,4 @@
-package p140920;
+package mathbook.p140920;
 
 /**
  * Hanoi 

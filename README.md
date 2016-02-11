@@ -9,11 +9,11 @@ Bubble sort
 sort.selection
 Selection sort
 
-p140913
+mathbook.p140913
 Calculate Factorial, Permutation, Combination
 
-p140916
+mathbook.p140916
 print weekday at afterDay
 
-p140920
+mathbook.p140920
 Tower of Hanoi 
