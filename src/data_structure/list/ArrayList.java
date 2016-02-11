@@ -23,9 +23,25 @@ public class ArrayList {
   }
 
   public void addFirst(Object element){
-
+    add(0,element);
   }
 
+  public Object remove(int index){
+    Object removed = elementData[index];
+    for(int i = index;i<size-1;i++){
+      elementData[i] = elementData[i+1];
+    }
+    size--;
+    return removed;
+  }
+
+  public Object removeLast(){
+    return remove(size-1);
+  }
+
+  public Object removeFirst(){
+    return remove(0);
+  }
   public String toString(){
     String s = "[";
     for(int i = 0; i<size; i++){
@@ -42,8 +58,13 @@ public class ArrayList {
     list.addLast(10);
     list.addLast(20);
     list.addLast(30);
-    System.out.println(list);
+    //System.out.println(list);
     list.add(2,25);
+    list.addFirst(5);
+    System.out.println(list);
+    list.remove(2);
+    list.removeFirst();
+    list.removeLast();
     System.out.println(list);
   }
 
