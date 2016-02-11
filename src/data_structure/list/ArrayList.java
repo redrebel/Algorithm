@@ -42,6 +42,24 @@ public class ArrayList {
   public Object removeFirst(){
     return remove(0);
   }
+
+  public Object get(int index){
+    return elementData[index];
+  }
+
+  public int size(){
+    return size;
+  }
+
+  public int indexOf(Object o){
+    for(int i=0; i<size(); i++){
+      if(elementData[i].equals(o)){
+        return i;
+      }
+    }
+
+    return -1;
+  }
   public String toString(){
     String s = "[";
     for(int i = 0; i<size; i++){
@@ -62,10 +80,9 @@ public class ArrayList {
     list.add(2,25);
     list.addFirst(5);
     System.out.println(list);
-    list.remove(2);
-    list.removeFirst();
-    list.removeLast();
-    System.out.println(list);
+    System.out.println(list.get(2));
+    System.out.println(list.size());
+    System.out.println(list.indexOf(200));
   }
 
 }
