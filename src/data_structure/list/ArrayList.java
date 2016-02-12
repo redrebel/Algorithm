@@ -60,6 +60,7 @@ public class ArrayList {
 
     return -1;
   }
+
   public String toString(){
     String s = "[";
     for(int i = 0; i<size; i++){
@@ -70,6 +71,38 @@ public class ArrayList {
     }
     return s + "]";
   }
+
+  public ListIterator listIterator(){
+    return new ListIterator();
+  }
+
+  public class ListIterator{
+    int nextIndex = 0;
+    public Object next(){
+      return elementData[nextIndex++];
+    }
+
+    public boolean hasNext(){
+      return size() > nextIndex;
+    }
+
+    public Object previous(){
+      return elementData[--nextIndex];
+    }
+
+    public boolean hasPrevious(){
+      return nextIndex > 0;
+    }
+
+    public void add(Object object){
+      ArrayList.this.add(nextIndex++, object);
+    }
+
+    public void remove(){
+      ArrayList.this.remove(--nextIndex);
+    }
+  }
+
   public static void main(String[] args){
     ArrayList list = new ArrayList();
 
@@ -83,6 +116,33 @@ public class ArrayList {
     System.out.println(list.get(2));
     System.out.println(list.size());
     System.out.println(list.indexOf(200));
+
+    ArrayList.ListIterator li = list.listIterator();
+    while(li.hasNext()){
+      System.out.println(li.next());
+    }
+
+    while(li.hasPrevious()){
+      System.out.println(li.previous());
+    }
+
+    /*while (li.hasNext()){
+      Integer number = (Integer)li.next();
+
+      if(number == 30){
+        li.add(35);
+      }
+    }
+    System.out.println(list);*/
+
+    while (li.hasNext()){
+      Integer number = (Integer)li.next();
+
+      if(number == 20){
+        li.remove();
+      }
+    }
+    System.out.println(list);
   }
 
 }
