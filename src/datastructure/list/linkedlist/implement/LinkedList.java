@@ -115,6 +115,46 @@ public class LinkedList {
     return temp.data;
   }
 
+  public int indexOf(Object data){
+    Node temp = head;
+    int index = 0;
+
+    while(temp.data != data){
+      index++;
+      temp = temp.next;
+      if(temp == null)
+        return -1;
+    }
+
+    return index;
+  }
+
+  public ListIterator listIterator(){
+    return new ListIterator();
+  }
+
+  public class ListIterator{
+    Node next;
+    Node lastReturned;
+    int nextIndex;
+
+    public ListIterator(){
+      next = head;
+      nextIndex = 0;
+    }
+
+    public Object next(){
+      lastReturned = next;
+      next = next.next;
+      nextIndex++;
+      return lastReturned.data;
+    }
+
+    public boolean hasNext(){
+      return nextIndex < size();
+    }
+  }
+
   public String toString(){
     if(head==null){
       return "[]";
