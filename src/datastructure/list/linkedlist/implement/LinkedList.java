@@ -153,6 +153,32 @@ public class LinkedList {
     public boolean hasNext(){
       return nextIndex < size();
     }
+
+    public void add(Object input){
+      Node newNode = new Node(input);
+
+      if(lastReturned == null){
+        head = newNode;
+      }
+      else{
+        lastReturned.next = newNode;
+      }
+
+      newNode.next = next;
+      lastReturned = newNode;
+      nextIndex++;
+      size++;
+    }
+
+    public Object remove(){
+      if(nextIndex == 0){
+        throw new IllegalStateException();
+      }
+
+      nextIndex--;
+      return LinkedList.this.remove(nextIndex);
+
+    }
   }
 
   public String toString(){

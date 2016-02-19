@@ -1,7 +1,5 @@
 package datastructure.list.linkedlist.implement;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-
 /**
  * Created by red on 2016. 2. 15..
  */
@@ -20,9 +18,17 @@ public class Main {
     System.out.println(numbers);
 //    System.out.println(numbers.indexOf(40));
     LinkedList.ListIterator i =  numbers.listIterator();
+//    i.add(5);
+//    i.next();
+//    i.add(15);
+//    System.out.println(numbers);
+
     while(i.hasNext()){
-      System.out.println(i.next());
+      if((Integer)i.next() == 10){
+        System.out.println(i.remove());
+      }
     }
+      System.out.println(numbers);
   }
 
 }
