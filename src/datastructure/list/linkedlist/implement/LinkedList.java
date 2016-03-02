@@ -1,11 +1,13 @@
 package datastructure.list.linkedlist.implement;
 
 /**
- * Created by red on 2016. 2. 15..
+ * Created by cjred77@gmail.com on 2016. 2. 23..
  */
 public class LinkedList {
-  private int size;
+  private int size = 0;
+  // first node
   private Node head;
+  // last node
   private Node tail;
 
   public class Node{

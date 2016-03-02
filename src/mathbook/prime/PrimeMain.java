@@ -1,12 +1,23 @@
 package mathbook.prime;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * Created by red on 2016. 2. 19..
  */
 public class PrimeMain {
-  public static int prime1(){
+  /**
+   * 100_000 input
+   * 9592,
+   * 23989 take ms
+   * @param num
+   * @return
+   */
+  public static int prime1(int num){
     int numPrime = 0;
-    for(int i = 1; i < 10000; i++){
+    for(int i = 2; i <= num; i++){
       int p = 0;
       for(int j=2; j<i; j++){
         int a = i % j;
@@ -27,9 +38,9 @@ public class PrimeMain {
    * more faster then prime1()
    * @return
    */
-  public static int prime2(){
+  public static int prime2(int num){
     int numPrime = 0;
-    for(int i = 1; i < 10000; i++){
+    for(int i = 2; i <= num; i++){
       int p = 0;
       boolean isPrime = true;
       for(int j=2; j<i; j++){
@@ -47,14 +58,43 @@ public class PrimeMain {
     return numPrime;
   }
 
-  public static void main(String[] args){
-    long t1 = System.currentTimeMillis();
-    System.out.println(prime1());
-    System.out.println(System.currentTimeMillis() - t1);
-    System.out.println();
-    long t2 = System.currentTimeMillis();
-    System.out.println(prime2());
-    System.out.println(System.currentTimeMillis() - t2);
+  public static int prime3(int num){
+    int numPrime = 0;
+    ArrayList<Integer> list = new ArrayList<>();
+    HashMap<String, String> map = new HashMap <>();
 
+    for(int i = 2; i<=num; i++){
+      boolean isPrime = true;
+      for(int j=0; j<list.size(); j++){
+        if(i%list.get(j)==0){
+          isPrime = false;
+          break;
+        }
+      }
+
+      if(isPrime){
+        list.add(i);
+      }
+    }
+
+    return list.size();
+  }
+
+  public static void main(String[] args){
+    int num = 100_000;
+    long start;
+//    start = System.currentTimeMillis();
+//    System.out.println(prime1(num));
+//    System.out.println(System.currentTimeMillis() - start);
+
+    System.out.println();
+    start = System.currentTimeMillis();
+    System.out.println(prime2(num));
+    System.out.println(System.currentTimeMillis() - start);
+
+    System.out.println();
+    start = System.currentTimeMillis();
+    System.out.println(prime3(num));
+    System.out.println(System.currentTimeMillis() - start);
   }
 }
