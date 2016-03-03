@@ -80,6 +80,32 @@ public class PrimeMain {
     return list.size();
   }
 
+  public static int prime4(int num){
+    int numPrime=0;
+    int arr[] = new int[num+1];
+
+    for(int i=2;i<=num;i++){
+      arr[i]=i;
+    }
+
+    for(int i=2;i<=Math.sqrt(num);i++){
+      if(arr[i]==0){
+        continue;
+      }
+
+      for(int j=i+i; j<=num;j+=i){
+        arr[j]=0;
+      }
+    }
+
+    for(int i=2;i<num;i++){
+      if(arr[i]!=0){
+        numPrime++;
+      }
+    }
+    return numPrime;
+  }
+
   public static void main(String[] args){
     int num = 100_000;
     long start;
@@ -90,11 +116,16 @@ public class PrimeMain {
     System.out.println();
     start = System.currentTimeMillis();
     System.out.println(prime2(num));
-    System.out.println(System.currentTimeMillis() - start);
+    System.out.println((float)(System.currentTimeMillis() - start)/1000);
 
     System.out.println();
     start = System.currentTimeMillis();
     System.out.println(prime3(num));
-    System.out.println(System.currentTimeMillis() - start);
+    System.out.println((float)(System.currentTimeMillis() - start)/1000);
+
+    System.out.println();
+    start = System.currentTimeMillis();
+    System.out.println(prime4(num));
+    System.out.println((float)(System.currentTimeMillis() - start)/1000);
   }
 }
