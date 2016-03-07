@@ -24,8 +24,7 @@ public class Factorial {
    * @return
    */
 	public static int recursion_facto(int n){
-		if(n == 0) return 1;
-		else if(n == 1) return 1;
+		if(n <= 1) return 1;
 		else return n*recursion_facto(n-1);
 
 	}
