@@ -9,9 +9,10 @@ import java.util.List;
  */
 public class PrimeMain {
   /**
+   * divide all value
    * 100_000 input
    * 9592,
-   * 23989 take ms
+   * take 24.0 s
    * @param num
    * @return
    */
@@ -35,13 +36,15 @@ public class PrimeMain {
   }
 
   /**
+   * 100_000 input
+   * 9592,
+   * takes 2.75 s
    * more faster then prime1()
    * @return
    */
   public static int prime2(int num){
     int numPrime = 0;
     for(int i = 2; i <= num; i++){
-      int p = 0;
       boolean isPrime = true;
       for(int j=2; j<i; j++){
         if((i % j) == 0) {
@@ -58,10 +61,15 @@ public class PrimeMain {
     return numPrime;
   }
 
+  /**
+   * 100_000 input
+   * 9592,
+   * takes 0.25 s
+   * more faster then prime2()
+   * @return
+   */
   public static int prime3(int num){
-    int numPrime = 0;
     ArrayList<Integer> list = new ArrayList<>();
-    HashMap<String, String> map = new HashMap <>();
 
     for(int i = 2; i<=num; i++){
       boolean isPrime = true;
@@ -134,30 +142,31 @@ public class PrimeMain {
   }
 
   public static void main(String[] args){
-    int num = 1_000_000;
+    int num = 100_000;
+
     long start;
 //    start = System.currentTimeMillis();
 //    System.out.println(prime1(num));
 //    System.out.println(System.currentTimeMillis() - start);
-//
-//    System.out.println();
-//    start = System.currentTimeMillis();
-//    System.out.println(prime2(num));
-//    System.out.println((float)(System.currentTimeMillis() - start)/1000);
-//
-//    System.out.println();
-//    start = System.currentTimeMillis();
-//    System.out.println(prime3(num));
-//    System.out.println((float)(System.currentTimeMillis() - start)/1000);
 
     System.out.println();
     start = System.currentTimeMillis();
-    System.out.println(prime4(num));
+    System.out.println(prime2(num));
     System.out.println((float)(System.currentTimeMillis() - start)/1000);
 
     System.out.println();
     start = System.currentTimeMillis();
-    System.out.println(prime5(num));
+    System.out.println(prime3(num));
     System.out.println((float)(System.currentTimeMillis() - start)/1000);
+
+//    System.out.println();
+//    start = System.currentTimeMillis();
+//    System.out.println(prime4(num));
+//    System.out.println((float)(System.currentTimeMillis() - start)/1000);
+//
+//    System.out.println();
+//    start = System.currentTimeMillis();
+//    System.out.println(prime5(num));
+//    System.out.println((float)(System.currentTimeMillis() - start)/1000);
   }
 }
