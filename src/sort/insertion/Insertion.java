@@ -15,6 +15,23 @@ package sort.insertion;
 public class Insertion {
 
 	public static void sort(int[] arr){
+		//int lastSortedIndex = 0;	// mark first element as sorted
+		for(int i=1; i<arr.length; i++){	// for each unsorted element
+			int extract = arr[i];	// 'extract' the element
+			int j;
+			for(j=i; j>=0; j--){	//for j=lastSortedIndex to 0
+				if(arr[j] > extract){	//if currentSortedElement > extractedElement
+					arr[j+1] = arr[j];	//move sorted element to the right by 1
+				}else{
+					break;	
+				}
+			}
+			arr[j+1] = extract;	// insert extracted element
+			//lastSortedIndex++;
+		}
+	}
+
+	public static void sort2(int[] arr){
 		int lastSortedIndex = 0;	// mark first element as sorted
 		for(int i=lastSortedIndex+1; i<arr.length; i++){	// for each unsorted element
 			int extract = arr[i];	// 'extract' the element
@@ -23,7 +40,7 @@ public class Insertion {
 				if(arr[j] > extract){	//if currentSortedElement > extractedElement
 					arr[j+1] = arr[j];	//move sorted element to the right by 1
 				}else{
-					break;	
+					break;
 				}
 			}
 			arr[j+1] = extract;	// insert extracted element
@@ -35,7 +52,7 @@ public class Insertion {
 		for(int a:arr)
 			System.out.print(a+",");
 		System.out.println();
-		sort(arr);
+		sort2(arr);
 		for(int a:arr)
 			System.out.print(a+",");
 	}
