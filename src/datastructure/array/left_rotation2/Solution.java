@@ -7,6 +7,7 @@ package datastructure.array.left_rotation2;
  */
 import java.util.*;
 
+
 public class Solution {
   public static void printArr(int[] arr){
     for(int i:arr){
@@ -29,16 +30,34 @@ public class Solution {
     for(int i=0; i<n; i++ ){
       arr[i] = sc.nextInt();
     }
+    if(n/2==d){
+      // if shift n/2 then I have Bug in my Solution
+      // So other Solution blow.
+      for(int i=0;i<d; i++){
+        int tmp = arr[i];
+        arr[i] = arr[i+d];
+        arr[i+d] = tmp;
+      }
+      printArr(arr);
+      sc.close();
+      return;
+    }
     //printArr(arr);
-    int i = 0;
-    int data = arr[i];
-    while(n-->0){
+    int pos = 0;
+    int data = arr[pos];
+    for(int i=0;i<n; i++){
       // pick
-      i = (i+n-d)%n;
-      int tmp = arr[i];
-      arr[i] = data;
+      pos = (pos+n-d)%n;
+      int tmp = arr[pos];
+      arr[pos] = data;
       data = tmp;
+      if(pos==0){
+        pos=1;
+        data=arr[pos];
+      }
+      System.out.println(i + ": " + pos + "," + tmp + "," + arr[pos]);
     }
     printArr(arr);
+    sc.close();
   }
 }
