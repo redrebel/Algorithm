@@ -1,6 +1,9 @@
-package datastructure.array;
-/*
-https://www.hackerrank.com/challenges/array-left-rotation
+package datastructure.array.left_rotation2;
+
+/**
+ * Created by cjred77@gmail.com on 2016. 7. 18..
+ * https://www.hackerrank.com/challenges/array-left-rotation
+ * more small memory use.
  */
 import java.util.*;
 
@@ -27,13 +30,15 @@ public class Solution {
       arr[i] = sc.nextInt();
     }
     //printArr(arr);
-
-    int[] otherArr = new int[n];
-    for(int i=0; i<n; i++){
-      // point that have to left rotation move
-      int pos = (i+n-d)%n;
-      otherArr[pos] = arr[i];
+    int i = 0;
+    int data = arr[i];
+    while(n-->0){
+      // pick
+      i = (i+n-d)%n;
+      int tmp = arr[i];
+      arr[i] = data;
+      data = tmp;
     }
-    printArr(otherArr);
+    printArr(arr);
   }
 }
