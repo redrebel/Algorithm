@@ -11,10 +11,10 @@ import java.util.Scanner;
  Find the largest palindrome made from the product of two 3-digit numbers which is less than NN.
 
  Input Format
- First line contains TT that denotes the number of test cases. This is followed by TT lines, each containing an integer, NN.
+ First line contains TT that denotes the number of Solution cases. This is followed by TT lines, each containing an integer, NN.
 
  Output Format
- Print the required answer for each test case in a new line.
+ Print the required answer for each Solution case in a new line.
 
  Constraints
  1≤T≤1001≤T≤100
