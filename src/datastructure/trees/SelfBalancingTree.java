@@ -1,10 +1,21 @@
 package datastructure.trees;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by cjred77@gmail.com on 2016. 8. 20..
  * AVL tree(Georgy Adelson-Velsky and Landis' tree, named after the inventors)
  */
 public class SelfBalancingTree {
+  public SelfBalancingTree(int... values){
+    System.out.println("init : ");
+    for(int value: values){
+      root = insertNode(root,value);
+    }
+    printTree();
+    System.out.println();
+  }
   class Node{
     int val;  // Value
     int ht; // Height
@@ -17,18 +28,10 @@ public class SelfBalancingTree {
   protected void printTree(Node root){
 
     if(root!=null){
-      /*if(root.ht==0){
-        System.out.print("[ ");
-      }*/
       printTree(root.left);
       printTree(root.right);
       System.out.print(root.val+"("+root.ht+")");
-      /*if(root.ht==0){
-        System.out.println(" ]");
-      }
-      else*/
-        System.out.print(", ");
-
+      System.out.print(", ");
     }
   }
 
@@ -38,47 +41,87 @@ public class SelfBalancingTree {
     System.out.println("]");
   }
 
+  protected int getNewHt(Node node){
+    return Math.max(height(node.left), height(node.right)) + 1;
+  }
+
   protected void rightLeftToRightRight(Node root){
     Node tmp = root.right;
     root.right = root.right.left;
+    tmp.left = root.right.right;
     root.right.right = tmp;
-    tmp.left = null;
+    root.right.right.ht = getNewHt(root.right.right);
+    root.right.ht = getNewHt(root.right);
+  }
+
+  protected void leftRightToLeftLeft(Node root){
+    Node tmp = root.left;
+    root.left = root.left.right;
+    tmp.right = root.left.left;
+    root.left.left = tmp;
+    root.left.left.ht = getNewHt(root.left.left);
+    root.left.ht = getNewHt(root.left);
 
   }
 
   protected Node rightRightToBalanced(Node root){
     Node tmp = root;
     root = root.right;
+    tmp.right = root.left;
     root.left = tmp;
-    tmp.right = null;
+
+    root.left.ht = getNewHt(root.left);
+    root.ht = getNewHt(root);
     return root;
-  }
-
-  protected void leftRightToLeftLeft(Node root){
-    Node tmp = root.left;
-    root.left = root.left.right;
-    root.left.left = tmp;
-    tmp.right = null;
-
   }
 
   protected Node leftLeftToBalanced(Node root){
     Node tmp = root;
     root = root.left;
+    tmp.left = root.right;
     root.right = tmp;
-    tmp.left = null;
+
+    root.right.ht = getNewHt(root.right);
+    root.ht = getNewHt(root);
     return root;
   }
 
-  public void balance(){
-    printTree();
-    //rightLeftToRightRight(root);
-    leftRightToLeftLeft(root);
-    printTree();
-    //root = rightRightToBalanced(root);
-    root = leftLeftToBalanced(root);
-    printTree();
+  public Node balance(Node root){
+    //printTree(root);
+    //System.out.println();
+
+    int balanceFactor = height(root.left) - height(root.right);
+
+    //System.out.println(root.val + "("+ root.ht+ ") : "+
+    //        " left("+ height(root.left) + "), right("+ height(root.right) + ") " + balanceFactor);
+
+    if(balanceFactor > 1){
+      //left is bigger
+      if(height(root.left.right) > height(root.left.left)){
+        System.out.println(root.val + " : leftRight");
+        leftRightToLeftLeft(root);
+      }
+      if(height(root.left.right) < height(root.left.left)) {
+        System.out.println(root.val + " : leftLeft ");
+        root = leftLeftToBalanced(root);
+      }
+    }
+    else if(balanceFactor < -1){
+      // right is bigger
+      if(height(root.right.left) > height(root.right.right)){
+        System.out.println(root.val + " : rightLeft");
+        rightLeftToRightRight(root);
+      }
+      if(height(root.right.left) < height(root.right.right)) {
+        System.out.println(root.val + " : rightRight");
+        root = rightRightToBalanced(root);
+      }
+    }
+    //printTree(root);
+    //System.out.println();
+    return root;
   }
+
   protected Node insertNode(Node root, int val){
     if(root==null){
       Node node = new Node();
@@ -87,50 +130,59 @@ public class SelfBalancingTree {
       return node;
     }
     if(root.val > val){
+      //System.out.println("intput left : "+val);
       root.left = insertNode(root.left, val);
     }
     else {
+      //System.out.println("intput right : "+val);
       root.right = insertNode(root.right, val);
     }
 
     root.ht = Math.max(height(root.left), height(root.right)) + 1;
-
-    int balanceFactor = height(root.left) - height(root.right);
-
-    System.out.println(root.val + "("+ root.ht+ ") : val="+val+
-            " left("+ height(root.left) + "), right("+ height(root.right) + ") " + balanceFactor);
-
-
+    root = balance(root);
     return root;
   }
 
   public int height(Node root){
     if(root == null){
-      return 0;
+      return -1;
     }
     return root.ht;
   }
 
   public void insert(int val){
-
+    System.out.println("insert : "+val);
     root = insertNode(root,val);
+    printTree();
     System.out.println();
   }
 
   public static void main(String[] agrs){
 
+    //SelfBalancingTree avl = new SelfBalancingTree(3,2,4,5,6);
     SelfBalancingTree avl = new SelfBalancingTree();
+    //14 25 21 10 23 7 26 12 30 16
 
-    avl.insert(5);
-    //avl.printTree();
-    //avl.printTree();
-    avl.insert(1);
-    avl.insert(4);
-    avl.balance();
-    //avl.insert(7);
-    //avl.insert(3);
-    //avl.insert(2);
-    //avl.insert(22);
+    avl.insert(14);
+    avl.insert(25);
+    avl.insert(21);
+    avl.insert(10);
+    avl.insert(23);
+    avl.insert(7);
+    avl.insert(26);
+    avl.insert(12);
+    avl.insert(30);
+    avl.insert(16);
+    avl.insert(19);
+
+
+    // 5 3 4
+//    avl.insert(5);
+//    avl.insert(3);
+//    avl.insert(4);
+
     avl.printTree();
+
+
   }
 }
