@@ -8,6 +8,10 @@ import java.util.List;
  * AVL tree(Georgy Adelson-Velsky and Landis' tree, named after the inventors)
  */
 public class SelfBalancingTree {
+  /**
+   * input 1,2,3,4,5,...
+   * @param values
+   */
   public SelfBalancingTree(int... values){
     System.out.println("init : ");
     for(int value: values){
@@ -16,6 +20,24 @@ public class SelfBalancingTree {
     printTree();
     System.out.println();
   }
+
+  /**
+   * input "1 2 3 4 5 6"
+   * @param s
+   */
+  public SelfBalancingTree(String s){
+    System.out.println("init : ");
+    String[] values = s.split(" ");
+    for(String value: values){
+      root = insertNode(root,Integer.parseInt(value));
+    }
+    printTree();
+    System.out.println();
+  }
+
+  /**
+   * Node
+   */
   class Node{
     int val;  // Value
     int ht; // Height
@@ -25,6 +47,10 @@ public class SelfBalancingTree {
 
   Node root = null;
 
+  /**
+   * printTree , Postorder Traversal, recursion
+   * @param root
+   */
   protected void printTree(Node root){
 
     if(root!=null){
@@ -35,12 +61,20 @@ public class SelfBalancingTree {
     }
   }
 
+  /**
+   * main printTree
+   */
   public void printTree(){
     System.out.print("[");
     printTree(root);
     System.out.println("]");
   }
 
+  /**
+   * renewal HT
+   * @param node
+   * @return
+   */
   protected int getNewHt(Node node){
     return Math.max(height(node.left), height(node.right)) + 1;
   }
@@ -50,6 +84,7 @@ public class SelfBalancingTree {
     root.right = root.right.left;
     tmp.left = root.right.right;
     root.right.right = tmp;
+
     root.right.right.ht = getNewHt(root.right.right);
     root.right.ht = getNewHt(root.right);
   }
@@ -59,6 +94,7 @@ public class SelfBalancingTree {
     root.left = root.left.right;
     tmp.right = root.left.left;
     root.left.left = tmp;
+
     root.left.left.ht = getNewHt(root.left.left);
     root.left.ht = getNewHt(root.left);
 
@@ -138,7 +174,7 @@ public class SelfBalancingTree {
       root.right = insertNode(root.right, val);
     }
 
-    root.ht = Math.max(height(root.left), height(root.right)) + 1;
+    root.ht = getNewHt(root);
     root = balance(root);
     return root;
   }
@@ -160,26 +196,10 @@ public class SelfBalancingTree {
   public static void main(String[] agrs){
 
     //SelfBalancingTree avl = new SelfBalancingTree(3,2,4,5,6);
-    SelfBalancingTree avl = new SelfBalancingTree();
-    //14 25 21 10 23 7 26 12 30 16
-
-    avl.insert(14);
-    avl.insert(25);
-    avl.insert(21);
-    avl.insert(10);
-    avl.insert(23);
-    avl.insert(7);
-    avl.insert(26);
-    avl.insert(12);
-    avl.insert(30);
-    avl.insert(16);
+    //String initValue = "14 25 21 10 23 7 26 12 30 16";
+    String initValue = "14 25 21 10 23 7 26 12 30 16";
+    SelfBalancingTree avl = new SelfBalancingTree(initValue);
     avl.insert(19);
-
-
-    // 5 3 4
-//    avl.insert(5);
-//    avl.insert(3);
-//    avl.insert(4);
 
     avl.printTree();
 
