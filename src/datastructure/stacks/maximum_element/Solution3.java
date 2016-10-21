@@ -1,4 +1,4 @@
-package datastructure.stacks;
+package datastructure.stacks.maximum_element;
 
 /**
  * Created by cjred77@gmail.com on 2016. 10. 17..
