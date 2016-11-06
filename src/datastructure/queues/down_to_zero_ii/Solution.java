@@ -27,35 +27,44 @@ public class Solution {
     }
   }
 
-  public static void downToZero(int n){
+  public static int downToZero(int num){
+
+    Queue<Integer> queueA = new LinkedList<>();
+    queueA.add(num);
     for(int cnt=0;;cnt++){
-      //System.out.println(n);
-      if(n<=0){
-        System.out.println(cnt);
-        return;
-      }
+      Queue<Integer> queueB = new LinkedList<>();
+      //System.out.println("\n"+cnt);
 /*      if(isPrime(n)){
         n--;
         continue;
       }*/
-      int a = (int)Math.sqrt(n);
-      int b = 1;
-      while (a>0){
-        if(n%a==0){
-          b = n/a;
+      while (!queueA.isEmpty()) {
+        int n = queueA.poll();
+        //System.out.println(n + " : get");
+        if (n < 1) {
+          return cnt;
+        }
+        if (n < 2) {
+          Queue<Integer> queueC = new LinkedList<>();
+          queueC.add(--n);
+          queueB = queueC;
           break;
         }
-        --a;
-      }
+        int a = (int) Math.sqrt(n);
+        while (a > 1) {
+          if (n % a == 0) {
+            int b = n / a;
+            int n1 = Math.max(a, b);
+            queueB.add(n1);
+            //System.out.println(n + " = " + a + " x " + b);
+          }
+          --a;
+        }
 
-      if(a==1){
         n--;
-        continue;
+        queueB.add(n);
       }
-
-      //System.out.println(n + " = " + a + " x " + b);
-
-      n = Math.max(a, b);
+      queueA = queueB;
     }
   }
 
@@ -64,7 +73,8 @@ public class Solution {
     int Q = in.nextInt();
     for(;Q>0;Q--){
       int N = in.nextInt();
-      downToZero(N);
+      int cnt = downToZero(N);
+      System.out.println(N + " cnt : " + cnt);
     }
   }
 }
