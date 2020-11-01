@@ -7,7 +7,30 @@ import java.util.Scanner;
  * https://www.hackerrank.com/challenges/manasa-and-stones/copy-from/18976418
  *
  */
+
 public class Solution {
+// 별도 함수로 뺀것
+  public static int[] stone(int n, int a, int b){
+    int[] result = new int[n];
+    
+    if(a>b){
+        int temp=a;
+        a=b;
+        b=temp;
+    }
+    else if(a==b){
+        result[0] = (n-1)*a;
+        return result;
+    }
+    
+    
+    for(int i=(n-1); i>=0; i--){
+        int j = (n-1)-i;
+        result[i] = (a*i) + (b*j);
+    }
+    return result;
+  }
+  
   public static void main(String[] args){
     Scanner in = new Scanner(System.in);
     int T = in.nextInt();
