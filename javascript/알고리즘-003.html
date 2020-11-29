@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function binaryScaleByLoop(n) {
+        let result = "";
+        while (true) {
+          if (n % 2 == 1) {
+            result = "1" + result;
+          } else {
+            result = "0" + result;
+          }
+
+          n = Math.floor(n / 2);
+
+          if (n == 0 || n == 1) {
+            result = String(n) + result;
+            break;
+          }
+        }
+        console.log(result);
+      }
+      binaryScaleByLoop(10);
+
+      function binaryScaleByRecursive(n) {
+        if (n == 0 || n == 1) {
+          return String(n);
+        }
+
+        return binaryScaleByRecursive(Math.floor(n / 2)) + String(n % 2);
+      }
+      console.log(binaryScaleByRecursive(10));
+    </script>
+  </body>
+</html>
