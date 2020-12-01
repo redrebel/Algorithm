@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    문자열 뒤집기를 loop방식과 recursive 방식으로 구현하세요.
+    <script>
+      function reverseStringByLoop(s) {
+        let result = "";
+        while (true) {
+          if (s.length == 0) {
+            break;
+          }
+
+          let arr = s.split("");
+          result += arr[arr.length - 1];
+          s = s.slice(0, s.length - 1);
+        }
+        console.log(result);
+      }
+      reverseStringByLoop("junggeun");
+
+      function reverseStringByLoop0(s) {
+        let result = "";
+        for (let i = s.length - 1; i >= 0; i--) {
+          result += s[i];
+        }
+        console.log(result);
+      }
+      reverseStringByLoop0("junggeun");
+
+      function reverseStringByRecursive(s) {
+        if (s.length == 0) {
+          return s;
+        }
+
+        return (
+          s[s.length - 1] + reverseStringByRecursive(s.slice(0, s.length - 1))
+        );
+      }
+
+      console.log(reverseStringByRecursive("junggeun"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열회전</title>
+  </head>
+  <body>
+    <script>
+      let matrix = [
+        [0, 0, 0, 1],
+        [0, 0, 2, 0],
+        [0, 3, 0, 0],
+        [4, 0, 0, 0],
+      ];
+
+      let result = [];
+
+      for (let i = 0; i < matrix.length; i++) {
+        result[i] = new Array(matrix[0].length);
+      }
+
+      for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++) {
+          result[i][j] = matrix[j][matrix.length - 1 - i];
+        }
+      }
+      console.log(result);
+    </script>
+  </body>
+</html>

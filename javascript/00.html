@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var twoSum = function (nums, target) {
+        let mod = [];
+        nums.sort(function (a, b) {
+          if (a > b) {
+            return -1;
+          }
+          if (b > a) {
+            return 1;
+          }
+          return 0;
+        });
+        for (v of nums) {
+          console.log("v:", parseInt(target, 10) - parseInt(v, 10));
+          mod.push(v);
+        }
+        console.log(mod);
+        for (let i = 0; i < nums.length; i++) {
+          let r = nums.indexOf(mod[i]);
+          console.log("r:", r);
+          //return r;
+          if (nums.indexOf(mod[i])) {
+            return [r, i];
+          }
+        }
+      };
+      let s = [2, 7, 11, 15];
+      // console.log(s.indexOf(15));
+      console.log(twoSum(s, 9));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function mergeSort(arr) {
+        let arrlen = arr.length; // 입력배열의 길이
+        let result = [];
+        if (arrlen <= 1) {
+          return arr;
+        }
+
+        let middleVal = parseInt(arrlen / 2);
+        let arrOne = mergeSort(arr.slice(0, middleVal));
+        let arrTwo = mergeSort(arr.slice(middleVal));
+
+        while (arrOne.length != 0 && arrTwo.length != 0) {
+          if (arrOne[0] < arrTwo[0]) {
+            result.push(arrOne.shift());
+          } else {
+            result.push(arrTwo.shift());
+          }
+        }
+
+        while (arrOne.length != 0) {
+          result.push(arrOne.shift());
+        }
+
+        while (arrTwo.length != 0) {
+          result.push(arrTwo.shift());
+        }
+
+        return result;
+      }
+      const arr = [3, 1, 5, 12, 9, 7, 6];
+      console.log(mergeSort(arr));
+    </script>
+  </body>
+</html>
