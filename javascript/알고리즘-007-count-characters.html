@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function count(c, num) {
+        let str = "";
+        for (let i = 1; i <= num; i++) {
+          str += i;
+        }
+        console.log(str);
+
+        let cnt = 0;
+        for (let j = 0; j < str.length; j++) {
+          if (str[j] == c) {
+            cnt++;
+          }
+        }
+        console.log(cnt);
+      }
+
+      count(8, 10000);
+    </script>
+  </body>
+</html>

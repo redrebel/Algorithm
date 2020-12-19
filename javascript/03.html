@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      1, 2, 3, 4, 5;
+      1 + 2 + 3 + 4 + 5 = 1 + 2 + 3 = 2 + 3 + 4 = 3 + 4 + 5 = 1;
+      x1 + x2 + f(arr);
+
+      2;
+      3, 4, 5;
+
+      function sumOddArray(arr) {
+        console.log(arr);
+        let i = arr[0];
+        console.log(i);
+        if (arr.length == 1) {
+          return i;
+        }
+        if (arr.length == 2) {
+          return (i += arr[1]);
+        }
+
+        for (let j = 0; j < arr.length; j++) {
+          return (i += sumOddArray(arr.slice(1, arr.length)));
+          //i += sumOddArray(arr.slice(2, arr.length));
+          console.log(i);
+        }
+        //return i;
+      }
+      console.log(sumOddArray([1, 2, 3]));
+    </script>
+  </body>
+</html>
